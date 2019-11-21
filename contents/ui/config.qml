@@ -14,6 +14,7 @@ Column {
     property alias cfg_BlurRadius: blurRadiusSld.value
     property alias cfg_Color: colorDlg.color
     property alias cfg_Speed: animatedImageSpeedSld.value
+    property int cfg_FillMode: Image.PreserveAspectFit
     property string cfg_Image: "animation.gif"
 
     spacing: units.largeSpacing
@@ -25,7 +26,7 @@ Column {
                 return Qt.size(plasmoid.width, plasmoid.height)
             }
             // Lock screen configuration case
-            return Qt.size(Screen.width, Screen.height)
+            return Qt.size(Screen.width/5, Screen.height/5)
         }
     }
 
@@ -70,7 +71,7 @@ Column {
 
             QtControls.CheckBox {
                 id: blurCheckBox
-                text:  i18nd("plasma_applet_org.kde.blur","Enable blur of : %1px", blurRadiusSld.value);
+                text:  i18nd("plasma_applet_org.kde.image","Enable blur of : %1px", blurRadiusSld.value);
             }
 
             QtControls.Slider {
@@ -100,6 +101,47 @@ Column {
                     to: 3
                 }
             }
+            QtControls.ComboBox {
+                       id: resizeComboBox
+                       anchors.left: parent.left
+                       anchors.right: parent.right
+
+                       model: [
+                           {
+                               'label': i18nd("plasma_wallpaper_org.kde.image", "Scaled and Cropped"),
+                               'fillMode': Image.PreserveAspectCrop
+                           },
+                           {
+                               'label': i18nd("plasma_wallpaper_org.kde.image", "Scaled"),
+                               'fillMode': Image.Stretch
+                           },
+                           {
+                               'label': i18nd("plasma_wallpaper_org.kde.image", "Scaled, Keep Proportions"),
+                               'fillMode': Image.PreserveAspectFit
+                           },
+                           {
+                               'label': i18nd("plasma_wallpaper_org.kde.image", "Centered"),
+                               'fillMode': Image.Pad
+                           },
+                           {
+                               'label': i18nd("plasma_wallpaper_org.kde.image", "Tiled"),
+                               'fillMode': Image.Tile
+                           }
+                       ]
+
+                       textRole: "label"
+                       onCurrentIndexChanged: root.cfg_FillMode = model[currentIndex]["fillMode"]
+                       Component.onCompleted: setMethod();
+
+                       function setMethod() {
+                           for (var i = 0; i < model.length; i++) {
+                               if (model[i]["fillMode"] === wallpaper.configuration.FillMode) {
+                                   resizeComboBox.currentIndex = i;
+                                   return;
+                               }
+                           }
+                       }
+                   }
         }
 
         Row {
@@ -115,6 +157,7 @@ Column {
                    bkColor: root.cfg_Color
                    blurRadius: root.cfg_BlurRadius * (height/Screen.height*2)
                    animationSpeed:root.cfg_Speed
+                   fillMode: root.cfg_FillMode
                 }
             }
         }

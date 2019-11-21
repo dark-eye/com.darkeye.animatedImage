@@ -44,8 +44,9 @@ KCM.GridDelegate {
         anchors.fill: parent
 
         Image {
-            id: walliePreview
+            id: walliePreview            
             anchors.fill: parent
+            asynchronous:true
             source: model.path
             fillMode: Image.PreserveAspectFit
             cache:true

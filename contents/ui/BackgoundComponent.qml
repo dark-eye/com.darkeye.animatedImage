@@ -10,6 +10,7 @@ Item {
     property var bkColor: wallpaper.configuration.Color
     property var animationSpeed: wallpaper.configuration.Speed
     property var blurRadius: wallpaper.configuration.BlurRadius
+    property var fillMode: wallpaper.configuration.FillMode
 
     anchors.fill:parent
     Rectangle {
@@ -20,12 +21,13 @@ Item {
         AnimatedImage {
             id: animation
             anchors.fill:parent
+            asynchronous:true
 
             smooth: true
             cache: true
 
             source: wallpaper.configuration.Image
-            fillMode: Image.PreserveAspectFit
+            fillMode: backgroundRoot.fillMode
             speed:backgroundRoot.animationSpeed
 
             onStatusChanged: playing = (status == AnimatedImage.Ready)

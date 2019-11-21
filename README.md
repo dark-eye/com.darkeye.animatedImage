@@ -33,7 +33,6 @@ And remove the installed wallpaper with
 
 ## TODOs
 - Find a better function for blur radius mapping from full screen to configuration preview
-- Add Image Fit modes
 
 # Credits
 
