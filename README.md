@@ -1,9 +1,10 @@
 # Animated Image wallpaper for KDE Plasma Desktop
 
 # Installtion
-- git clone git@github.com:dark-eye/com.darkeye.animatedImage.git
-- plasmapkg2 --install com.darkeye.animatedImage
-
+```
+git clone git@github.com:dark-eye/com.darkeye.animatedImage.git
+plasmapkg2 --install com.darkeye.animatedImage
+```
 
 # Development
 
@@ -31,8 +32,8 @@ And remove the installed wallpaper with
   all `*.qmlc` files.
 
 ## TODOs
-- Add speed configuration
 - Find a better function for blur radius mapping from full screen to configuration preview
+- Add Image Fit modes
 
 # Credits
 

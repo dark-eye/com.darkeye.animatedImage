@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.11
 import org.kde.plasma.core 2.0 as PlasmaCore
 import QtGraphicalEffects 1.0
 
@@ -8,6 +8,7 @@ Item {
     property alias source: animation.source
     property bool blurEnabled: wallpaper.configuration.Blur
     property var bkColor: wallpaper.configuration.Color
+    property var animationSpeed: wallpaper.configuration.Speed
     property var blurRadius: wallpaper.configuration.BlurRadius
 
     anchors.fill:parent
@@ -19,10 +20,14 @@ Item {
         AnimatedImage {
             id: animation
             anchors.fill:parent
-            source: wallpaper.configuration.Image
-            fillMode: Image.PreserveAspectFit
+
             smooth: true
             cache: true
+
+            source: wallpaper.configuration.Image
+            fillMode: Image.PreserveAspectFit
+            speed:backgroundRoot.animationSpeed
+
             onStatusChanged: playing = (status == AnimatedImage.Ready)
         }
     }

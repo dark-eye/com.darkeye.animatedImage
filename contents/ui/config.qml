@@ -1,4 +1,4 @@
-import QtQuick 2.12
+ import QtQuick 2.12
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import QtQuick.Controls 2.12 as QtControls
@@ -13,6 +13,7 @@ Column {
     property alias cfg_Blur: blurCheckBox.checked
     property alias cfg_BlurRadius: blurRadiusSld.value
     property alias cfg_Color: colorDlg.color
+    property alias cfg_Speed: animatedImageSpeedSld.value
     property string cfg_Image: "animation.gif"
 
     spacing: units.largeSpacing
@@ -34,15 +35,9 @@ Column {
         spacing: units.largeSpacing
         Column {
             anchors.verticalCenter: parent.verticalCenter
-            QtControls.CheckBox {
-                id: blurCheckBox
-                property int textLength: 11
-                width: theme.mSize(theme.defaultFont).width * textLength
-                text: "Enable blur"
-            }
 
             Row {
-                    width:units.gridUnit*10
+                    spacing: units.largeSpacing
                     QtDialogs.ColorDialog {
                         id:colorDlg
                         modality: Qt.WindowModal
@@ -71,20 +66,38 @@ Column {
                         }
                     }
             }
-            Column {
-                QtControls.Label {
 
+
+            QtControls.CheckBox {
+                id: blurCheckBox
+                text:  i18nd("plasma_applet_org.kde.blur","Enable blur of : %1px", blurRadiusSld.value);
+            }
+
+            QtControls.Slider {
+                enabled: blurCheckBox.checked
+                id:blurRadiusSld
+                live:true
+                stepSize: 1
+                snapMode:Slider.NoSnap
+                from: 1
+                value: 40
+                to: 100
+            }
+
+            Column {
+
+                QtControls.Label {
                     anchors.verticalCenter: colorButton.verticalCenter
                     horizontalAlignment: Text.AlignRight
-                    text: i18nd("plasma_applet_org.kde.image", "Background blur Radius:")
+                    text: i18nd("plasma_applet_org.kde.image", "Image Animation speed : %1",animatedImageSpeedSld.value)
                 }
                 QtControls.Slider {
-                    id:blurRadiusSld
+                    id:animatedImageSpeedSld
                     live:true
-
-                    from: 1
-                    value: 40
-                    to: 100
+                    stepSize: 0.1
+                    from: 0.1
+                    value: 1
+                    to: 3
                 }
             }
         }
@@ -101,6 +114,7 @@ Column {
                    blurEnabled: blurCheckBox.checked
                    bkColor: root.cfg_Color
                    blurRadius: root.cfg_BlurRadius * (height/Screen.height*2)
+                   animationSpeed:root.cfg_Speed
                 }
             }
         }
