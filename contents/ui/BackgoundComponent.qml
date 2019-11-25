@@ -11,6 +11,10 @@ Item {
     property var animationSpeed: wallpaper.configuration.Speed
     property var blurRadius: wallpaper.configuration.BlurRadius
     property var fillMode: wallpaper.configuration.FillMode
+    property bool dayNightEnabled: wallpaper.configuration.DayNightColoring
+    property real dayNightEffect: wallpaper.configuration.DayNightEffect
+    property int dayNightOffset: wallpaper.configuration.DayNightOffset
+    property real timeoffestForDayNight : (Date.now()+(dayNightOffset*1000)+(new Date()).getTimezoneOffset())%86400000/86400000
 
     anchors.fill:parent
     Rectangle {
@@ -43,5 +47,23 @@ Item {
 
         source: bkRect
         radius: backgroundRoot.blurRadius
+    }
+    layer.enabled:  backgroundRoot.dayNightEnabled
+    layer.effect: ShaderEffect {        
+        property variant effectStrength: backgroundRoot.dayNightEffect
+        property variant dayNightTex : Image {  source: "day_night_gradient.png" }
+        property variant timePos :Qt.point(backgroundRoot.timeoffestForDayNight,1)
+        fragmentShader: "
+            varying highp vec2 qt_TexCoord0;
+            uniform float effectStrength;
+            uniform vec2 timePos;
+            uniform sampler2D dayNightTex;
+           uniform lowp sampler2D source;
+            uniform lowp float qt_Opacity;
+            void main() {
+                lowp vec4 tex = texture2D(source, qt_TexCoord0);
+                lowp vec4 coloringEffect = texture2D(dayNightTex, timePos);
+                gl_FragColor = ( tex.rgba + (( coloringEffect.rgba - vec4(0.5,0.5,0.5,1) ) * effectStrength) ) * qt_Opacity;
+            }"
     }
 }
