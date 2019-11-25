@@ -20,7 +20,7 @@
     </entry>
     <entry name="Image" type="String">
       <label>Wallpaper image path or wallpaper name</label>
-      <default>animation.gif</default>
+      <default>animation.webp</default>
     </entry>
     <entry name="Speed" type="float">
       <label>The speed of the animation</label>
