@@ -15,7 +15,7 @@ Column {
     property alias cfg_Color: colorDlg.color
     property alias cfg_Speed: animatedImageSpeedSld.value
     property int cfg_FillMode: Image.PreserveAspectFit
-    property string cfg_Image: "animation.gif"
+    property string cfg_Image: "animation.webp"
 
     spacing: units.largeSpacing
 
