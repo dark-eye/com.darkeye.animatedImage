@@ -41,3 +41,5 @@ This code was based on :
 - Inspired mainly by com.nerdyweekly.animated wallpaper  that can be found [here](https://github.com/nhanb/com.nerdyweekly.animated)
 - com.github.zren.inactiveblur the can be found [here](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur)
 - Default animation by [Floris Kloet](https://livingstills.tumblr.com/)
+
+[Donate](https://liberapay.com/darkeye/) : ![donation widget](http://img.shields.io/liberapay/receives/darkeye.svg?logo=liberapay)
