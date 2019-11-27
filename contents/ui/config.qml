@@ -10,6 +10,7 @@
  
  Column {
      id: root
+     anchors.fill:parent
      property alias  cfg_Blur: blurCheckBox.checked
      property alias  cfg_BlurRadius: blurRadiusSld.value
      property alias  cfg_Color: colorDlg.color
@@ -38,6 +39,7 @@
          anchors.horizontalCenter: parent.horizontalCenter
          spacing: units.largeSpacing
          Column {
+             id:configColumn
              anchors.verticalCenter: parent.verticalCenter
              
              Row {
@@ -161,7 +163,7 @@
              }
              
              QtControls.Slider {
-                 visible:false
+                 visible: !wallpaper
                  enabled: dayNightColoringChkBox.checked
                  id:dayNightColoroffsetSld
                  live:true
@@ -177,7 +179,7 @@
              
              Item {
                  width: height*(Screen.width/Screen.height)
-                 height: root.height/3
+                 height: configColumn.height 
                  BackgoundComponent {
                      source: root.cfg_Image
                      blurEnabled: blurCheckBox.checked
@@ -198,7 +200,7 @@
          id: imageSelectRow
          Loader {
              width:root.width - units.largeSpacing
-             height:root.height/2
+             height:root.height - configColumn.height - buttonsRow.height - units.largeSpacing * 2
              asynchronous: true
              sourceComponent: wallpaperGridComp
          }
@@ -214,11 +216,7 @@
              view.currentIndex:  Math.min(imageWallpaper.wallpaperModel.indexOf(cfg_Image), imageWallpaper.wallpaperModel.count-1)
              focus: true
              
-             //cellWidth: Math.max(root.width / 5, 160)
-             //cellHeight: Math.max(root.height / 5, 80)
-             
              anchors.margins: 4
-             // boundsBehavior: Flickable.StopAtBounds
              
              view.delegate: WallpaperDelegate {
                  color: cfg_Color
