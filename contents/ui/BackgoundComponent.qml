@@ -28,7 +28,7 @@ Item {
             asynchronous:true
 
             smooth: true
-            cache: true
+            cache: false
 
             source: wallpaper.configuration.Image
             fillMode: backgroundRoot.fillMode
