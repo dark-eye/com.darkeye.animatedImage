@@ -27,8 +27,8 @@ Item {
             anchors.fill:parent
             asynchronous:true
 
-            smooth: true
-            cache: false
+            smooth: false
+            cache: (height*width*frameCount < 2**22) //only cache if its fairly inexpensive
 
             source: wallpaper.configuration.Image
             fillMode: backgroundRoot.fillMode
