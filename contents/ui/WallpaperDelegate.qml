@@ -22,22 +22,21 @@ import QtQuick.Controls.Private 1.0
 import QtGraphicalEffects 1.0
 import org.kde.kquickcontrolsaddons 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.kirigami 2.4 as Kirigami
 import org.kde.kcm 1.1 as KCM
 
 KCM.GridDelegate {
     id: wallpaperDelegate
-
   
     property alias color: backgroundRect.color
     property bool selected: (wallpapersGrid.currentIndex == index)
 
+	opacity: model.pendingDeletion ? 0.5 : 1
     text: model.display
     
     toolTip: model.author.length > 0 ? i18nd("plasma_wallpaper_org.kde.image", "%1 by %2", model.display, model.author) : ""
 
     hoverEnabled: true
-    
+
     thumbnail: Rectangle {
         id: backgroundRect
         color: cfg_Color
