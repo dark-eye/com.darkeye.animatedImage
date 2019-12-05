@@ -38,7 +38,7 @@
       <label>How much should the  day/night effect be promonent?</label>
       <default>0.1</default>
     </entry>
-    <entry name="dayNightOffset" type="int">
+    <entry name="DayNightOffset" type="int">
       <label>How much should the  day/night effect be promonent?</label>
       <default>43200</default>
     </entry>
