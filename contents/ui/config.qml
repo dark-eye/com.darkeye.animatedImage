@@ -252,14 +252,8 @@
 			 right: parent.right
 		 }
 		 QtControls.Button {
-			 //			  visible:
-			 icon.name: "save"
-			 text: i18nd("plasma_applet_org.kde.image","Apply Changes...")
-			 onClicked: imageWallpaper.commitDeletion();
-		 }
-		 QtControls.Button {
 			 icon.name: "document-open-folder"
-			 text: i18nd("plasma_applet_org.kde.image","Open...")
+			 text: i18nd("plasma_applet_org.kde.image","Add Local Wallpaper...")
 			 onClicked: imageWallpaper.showFileDialog();
 		 }
 		 QtControls.Button {
@@ -268,6 +262,12 @@
 			 onClicked: imageWallpaper.getNewWallpaper();
 		 }
 	 }
+
+
+	//=======================================================
+	function saveConfig() {
+		imageWallpaper.commitDeletion();
+	}
 
  }
 
