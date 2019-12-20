@@ -183,6 +183,7 @@
 				 width: height*(Screen.width/Screen.height)
 				 height: configColumn.height
 				 BackgoundComponent {
+					 _animation.playing:(_animation.status == AnimatedImage.Ready )
 					 source: root.cfg_Image
 					 blurEnabled: blurCheckBox.checked
 					 bkColor: root.cfg_Color

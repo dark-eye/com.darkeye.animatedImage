@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.0
 Item {
 	id: backgroundRoot
 
+	property alias _animation: animation
 	property alias source: animation.source
 	property bool blurEnabled: wallpaper.configuration.Blur
 	property var bkColor: wallpaper.configuration.Color
@@ -38,7 +39,7 @@ Item {
 
 			onStatusChanged: {
 				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < 2**26) //only cache if its fairly inexpensive
-				playing = (status == AnimatedImage.Ready)
+				//playing = (status == AnimatedImage.Ready)
 			}
 		}
 	}

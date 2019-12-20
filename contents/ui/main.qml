@@ -10,7 +10,12 @@ Item {
     width: Screen.width
     height: Screen.height
     
+    WindowModel {
+        id:windowModel
+    }
+    
     BackgoundComponent {
+        _animation.playing:(_animation.status == AnimatedImage.Ready && !windowModel.currentWindowMaximized)
         source: wallpaper.configuration.Image
         blurEnabled: wallpaper.configuration.Blur
         bkColor: wallpaper.configuration.Color
