@@ -39,8 +39,12 @@
       <default>0.1</default>
     </entry>
     <entry name="DayNightOffset" type="Int">
-      <label>How much should the  day/night effect be promonent?</label>
+      <label>The offset that we should apply to the daynight effect</label>
       <default>43200</default>
+    </entry>
+    <entry name="StopAnimOnHide" type="Bool">
+      <label>Should the animation stop playing when it`s completly hidden?</label>
+      <default>false</default>
     </entry>
   </group>
 

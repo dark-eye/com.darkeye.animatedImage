@@ -49,6 +49,14 @@ Item {
 	function activeTask() {
 		return activeWindowModel.get(0) || {}
 	}
+	
+	function isOnSpecificScreen(screenId) {
+        var actTask = activeTask()
+        if(actTask.isOnScreen) {
+            return actTask.isOnScreen(screenId);
+        }
+        return false;
+    }
 
 	function updateActiveWindowInfo() {
 		var actTask = activeTask()

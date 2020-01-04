@@ -56,20 +56,31 @@ Item {
 	}
 	layer.enabled:  backgroundRoot.dayNightEnabled
 	layer.effect: ShaderEffect {
-		property variant effectStrength: backgroundRoot.dayNightEffect
-		property variant dayNightTex : Image {  source: "day_night_gradient.png" }
-		property variant timePos :Qt.point(backgroundRoot.timeoffestForDayNight,1)
-		fragmentShader: "
-		varying highp vec2 qt_TexCoord0;
-		uniform float effectStrength;
-		uniform vec2 timePos;
-		uniform sampler2D dayNightTex;
-		uniform lowp sampler2D source;
-		uniform lowp float qt_Opacity;
-		void main() {
-		lowp vec4 tex = texture2D(source, qt_TexCoord0);
-		lowp vec4 coloringEffect = texture2D(dayNightTex, timePos);
-		gl_FragColor = ( tex.rgba + (( coloringEffect.rgba - vec4(0.33, 0.33, 0.33,1) ) * effectStrength) ) * qt_Opacity;
-	}"
+        property variant effectStrength: backgroundRoot.dayNightEffect
+        property variant dayNightTex : Image {  source: "day_night_gradient.png" }
+        property variant desaturateTex : Image { source: "desaturate_gradient.png" }
+        property variant shadingTex : Image { source: "day_night_shading.png" }
+        property variant timePos :Qt.point(backgroundRoot.timeoffestForDayNight,1)
+        fragmentShader: "varying highp vec2 qt_TexCoord0;
+                        uniform float effectStrength;
+                        uniform vec2 timePos;
+                        uniform sampler2D dayNightTex;
+                        uniform sampler2D desaturateTex;
+                        uniform sampler2D shadingTex;
+                        uniform lowp sampler2D source;
+                        uniform lowp float qt_Opacity;
+
+                        void main() {
+                            lowp vec4 tex = texture2D(source, qt_TexCoord0);
+                            lowp vec4 coloringEffect = texture2D(dayNightTex, timePos);
+                            lowp vec4 desturateEffect = texture2D(desaturateTex, timePos);
+                            lowp vec4 shadingEffect = texture2D(shadingTex, timePos);
+                            float satur = dot(tex.rgb, vec3(0.2126, 0.7152, 0.0722 ));
+                            gl_FragColor = (lerp( tex.rgba ,vec4(satur,satur,satur,1) , desturateEffect.r ) + 
+                                        (( coloringEffect.rgba - vec4(0.75, 0.75, 0.75, 1) ) * effectStrength)) * 
+                                        lerp( vec4(1,1,1,1), shadingEffect.rgba, effectStrength ) *
+                                        qt_Opacity;
+                        }
+                        "
 	}
 }

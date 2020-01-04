@@ -32,7 +32,7 @@ And remove the installed wallpaper with
   all `*.qmlc` files.
 
 ## TODOs
-- Find a better function for blur radius mapping from full screen to configuration preview
+- Customized tint gradinet
 
 # Credits
 
