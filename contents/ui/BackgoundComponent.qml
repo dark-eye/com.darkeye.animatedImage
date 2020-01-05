@@ -76,11 +76,10 @@ Item {
                             lowp vec4 desturateEffect = texture2D(desaturateTex, timePos);
                             lowp vec4 shadingEffect = texture2D(shadingTex, timePos);
                             float satur = dot(tex.rgb, vec3(0.2126, 0.7152, 0.0722 ));
-                            gl_FragColor = (lerp( tex.rgba ,vec4(satur,satur,satur,1) , desturateEffect.r ) + 
+                            gl_FragColor = (mix( tex.rgba ,vec4(satur,satur,satur,1) , desturateEffect.r ) +
                                         (( coloringEffect.rgba - vec4(0.75, 0.75, 0.75, 1) ) * effectStrength)) * 
-                                        lerp( vec4(1,1,1,1), shadingEffect.rgba, effectStrength ) *
+                                        mix( vec4(1,1,1,1), shadingEffect.rgba, effectStrength ) *
                                         qt_Opacity;
-                        }
-                        "
+                        }"
 	}
 }
