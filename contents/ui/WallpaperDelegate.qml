@@ -17,7 +17,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  2.010-1301, USA.
  */
 
-import QtQuick 2.0
+import QtQuick 2.11
 import QtQuick.Controls.Private 1.0
 import QtGraphicalEffects 1.0
 import org.kde.kquickcontrolsaddons 2.0
