@@ -1,7 +1,7 @@
  import QtQuick 2.11
  import org.kde.plasma.core 2.0 as PlasmaCore
 
- import QtQuick.Controls 2.11 as QtControls
+ import QtQuick.Controls 2.4 as QtControls
  import QtQuick.Dialogs 1.1 as QtDialogs
  import QtQuick.Window 2.0 // for Screen
  import QtGraphicalEffects 1.0
