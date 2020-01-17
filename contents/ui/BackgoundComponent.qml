@@ -26,19 +26,21 @@ Item {
 		AnimatedImage {
 			id: animation
 			anchors.fill:parent
+			
+			property var cachingLimit: 67108864
 
 			asynchronous:true
 			smooth: false
-			cache:(frameCount && sourceSize.height*sourceSize.width*frameCount*4 < 2**26)
+			cache:(frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit)
 			onSourceSizeChanged:{
-				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < 2**26) //only cache if its fairly inexpensive
+				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) //only cache if its fairly inexpensive
 			}
 			source: wallpaper.configuration.Image
 			fillMode: backgroundRoot.fillMode
 			speed:backgroundRoot.animationSpeed
 
 			onStatusChanged: {
-				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < 2**26) //only cache if its fairly inexpensive
+				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) //only cache if its fairly inexpensive
 				//playing = (status == AnimatedImage.Ready)
 			}
 		}
