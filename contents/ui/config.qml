@@ -1,13 +1,15 @@
- import QtQuick 2.11
- import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick 2.11
+import org.kde.plasma.core 2.0 as PlasmaCore
 
- import QtQuick.Controls 2.4 as QtControls
- import QtQuick.Dialogs 1.1 as QtDialogs
- import QtQuick.Window 2.0 // for Screen
- import QtGraphicalEffects 1.0
- import org.kde.plasma.wallpapers.image 2.0 as Wallpaper
- import org.kde.kcm 1.1 as KCM
- import org.kde.kirigami 2.4 as Kirigami
+import QtQuick.Controls 2.4 as QtControls
+import QtQuick.Dialogs 1.1 as QtDialogs
+import QtQuick.Window 2.0 // for Screen
+import QtGraphicalEffects 1.0
+import org.kde.plasma.wallpapers.image 2.0 as Wallpaper
+import org.kde.kcm 1.1 as KCM
+import org.kde.kirigami 2.4 as Kirigami
+import org.kde.newstuff 1.62 as NewStuff
+
 
 
  Column {
@@ -257,11 +259,12 @@
 			 text: i18nd("plasma_applet_org.kde.image","Add Local Wallpaper...")
 			 onClicked: imageWallpaper.showFileDialog();
 		 }
-		 QtControls.Button {
-			 icon.name: "get-hot-new-stuff"
-			 text: i18nd("plasma_applet_org.kde.image","Get New Wallpapers...")
-			 onClicked: imageWallpaper.getNewWallpaper();
-		 }
+		 NewStuff.Button {
+            configFile: "wallpaper.knsrc"
+            text: i18nd("plasma_wallpaper_org.kde.image", "Get New Wallpapers...")
+            viewMode: NewStuff.Page.ViewMode.Preview
+            onChangedEntriesChanged: imageWallpaper.newStuffFinished();
+        }
 	 }
 
 
