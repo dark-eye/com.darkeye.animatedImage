@@ -31,6 +31,10 @@ And remove the installed wallpaper with
 - May need to logout then login again for the updated `main.qml` to take effect. Or try removing
   all `*.qmlc` files.
 
+### Resources
+
+- Some good animations can be found at [Floris Kloet](https://livingstills.tumblr.com/)  (Checkout his archive)
+  
 ## TODOs
 - Customized tint gradinet
 
@@ -39,8 +43,8 @@ And remove the installed wallpaper with
 This code was based on :
 
 - Inspired mainly by com.nerdyweekly.animated wallpaper  that can be found [here](https://github.com/nhanb/com.nerdyweekly.animated)
-- com.github.zren.inactiveblur the can be found [here](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur)
-- Default animation by [Floris Kloet](https://livingstills.tumblr.com/)
+- And some of com.github.zren.inactiveblur the can be found [here](https://github.com/Zren/plasma-wallpapers/tree/master/inactiveblur) was use for the image selection and kde integrestion
+
 
 
 ![donation widget](http://img.shields.io/liberapay/receives/darkeye.svg?logo=liberapay)
