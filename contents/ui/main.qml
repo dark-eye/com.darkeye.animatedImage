@@ -28,9 +28,10 @@ Item {
     BackgoundComponent {
         id:backgroundComponent
         _animation.playing: _animation.status == AnimatedImage.Ready && (!wallpaper.configuration.StopAnimOnHide || !windowModel.currentWindowMaximized) 
-        source: wallpaper.configuration.Image
-        blurEnabled: wallpaper.configuration.Blur
-        bkColor: wallpaper.configuration.Color
-        blurRadius: wallpaper.configuration.BlurRadius
+//         source: wallpaper.configuration.Image
+//         blurEnabled: wallpaper.configuration.Blur
+//         bkColor: wallpaper.configuration.Color
+//         blurRadius: wallpaper.configuration.BlurRadius
+//         cacheImageAnyway: wallpaper.configuration.CacheImageAnyway
     }
 }

@@ -46,6 +46,10 @@
       <label>Should the animation stop playing when it`s completly hidden?</label>
       <default>false</default>
     </entry>
+    <entry name="CacheImageAnyway" type="Bool">
+      <label>Should we use caching on large images</label>
+      <default>false</default>
+    </entry>
   </group>
 
 </kcfg>

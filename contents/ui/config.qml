@@ -24,6 +24,7 @@ import org.kde.newstuff 1.1 as NewStuff
 	 property alias  cfg_DayNightColoring : dayNightColoringChkBox.checked
 	 property alias  cfg_DayNightEffect: dayNightColorEffectSld.value
 	 property alias  cfg_DayNightOffset: dayNightColoroffsetSld.value
+	 property alias  cfg_CacheImageAnyway: cacheImageAnywayChkBox.checked
 
 	 spacing: units.largeSpacing
 
@@ -110,6 +111,32 @@ import org.kde.newstuff 1.1 as NewStuff
 					 to: 3
 				 }
 			 }
+
+			 QtControls.CheckBox {
+				 id: dayNightColoringChkBox
+				 text:  i18nd("plasma_applet_org.kde.image","Enable Day/Night Tinting : %1 % ", dayNightColorEffectSld.value*100);
+			 }
+			 QtControls.Slider {
+				 enabled: dayNightColoringChkBox.checked
+				 id:dayNightColorEffectSld
+				 live:true
+				 stepSize: 0.01
+				 snapMode:Slider.NoSnap
+				 from: 0.01
+				 value: 0.1
+				 to: 1
+			 }
+
+			 QtControls.Slider {
+				 visible: !wallpaper
+				 enabled: dayNightColoringChkBox.checked
+				 id:dayNightColoroffsetSld
+				 live:true
+				 from: 1
+				 value: 43200
+				 to: 86400
+			 }
+			 
 			 QtControls.ComboBox {
 				 id: resizeComboBox
 				 anchors.left: parent.left
@@ -152,29 +179,17 @@ import org.kde.newstuff 1.1 as NewStuff
 				 }
 			 }
 			 QtControls.CheckBox {
-				 id: dayNightColoringChkBox
-				 text:  i18nd("plasma_applet_org.kde.image","Enable Day/Night Tinting : %1 % ", dayNightColorEffectSld.value*100);
+				 id: cacheImageAnywayChkBox
+				 text:  i18nd("plasma_applet_org.kde.image","Cache images even if they are large");
+//                  Tooltip.text:i18nd("plasma_applet_org.kde.image","This reduced CPU usage but will affect memory usage");
 			 }
-			 QtControls.Slider {
-				 enabled: dayNightColoringChkBox.checked
-				 id:dayNightColorEffectSld
-				 live:true
-				 stepSize: 0.01
-				 snapMode:Slider.NoSnap
-				 from: 0.01
-				 value: 0.1
-				 to: 1
-			 }
-
-			 QtControls.Slider {
-				 visible: !wallpaper
-				 enabled: dayNightColoringChkBox.checked
-				 id:dayNightColoroffsetSld
-				 live:true
-				 from: 1
-				 value: 43200
-				 to: 86400
-			 }
+			 QtControls.Label {
+                 visible: cacheImageAnywayChkBox.checked
+                 width:256
+                 text:i18nd("plasma_applet_org.kde.image","PLEASE NOTE : this can lead to ALOT of memory use! Caching is done uncompressed so 100MB file of 10 in 1920x1080 with 30 FPS == 2.5GiB!!");
+                 color:"red"
+                 wrapMode:Text.WordWrap
+             }
 		 }
 
 		 Row {
@@ -195,6 +210,7 @@ import org.kde.newstuff 1.1 as NewStuff
 					 dayNightEnabled: root.cfg_DayNightColoring
 					 dayNightEffect: root.cfg_DayNightEffect
 					 dayNightOffset:root.cfg_DayNightOffset
+					 cacheImageAnyway:false
 
 				 }
 			 }

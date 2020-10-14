@@ -15,6 +15,7 @@ Item {
 	property bool dayNightEnabled: wallpaper.configuration.DayNightColoring
 	property real dayNightEffect: wallpaper.configuration.DayNightEffect
 	property int dayNightOffset: wallpaper.configuration.DayNightOffset
+	property bool cacheImageAnyway: wallpaper.configuration.CacheImageAnyway
 	property real timeoffestForDayNight : (Date.now()+(dayNightOffset*1000)+(new Date()).getTimezoneOffset())%86400000/86400000
 
 	anchors.fill:parent
@@ -31,16 +32,16 @@ Item {
 
 			asynchronous:true
 			smooth: false
-			cache:(frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit)
+			cache:(frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) || backgroundRoot.cacheImageAnyway
 			onSourceSizeChanged:{
-				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) //only cache if its fairly inexpensive
+				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) || backgroundRoot.cacheImageAnyway //only cache if its fairly inexpensive
 			}
 			source: wallpaper.configuration.Image
 			fillMode: backgroundRoot.fillMode
 			speed:backgroundRoot.animationSpeed
 
 			onStatusChanged: {
-				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) //only cache if its fairly inexpensive
+				cache = (frameCount && sourceSize.height*sourceSize.width*frameCount*4 < cachingLimit) || backgroundRoot.cacheImageAnyway //only cache if its fairly inexpensive
 				//playing = (status == AnimatedImage.Ready)
 			}
 		}
