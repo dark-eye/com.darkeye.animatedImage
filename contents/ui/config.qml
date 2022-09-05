@@ -29,7 +29,7 @@ import org.kde.newstuff 1.1 as NewStuff
 
 	 spacing: units.largeSpacing
 
-	 Wallpaper.Image {
+	 Wallpaper.ImageBackend {
 		 id: imageWallpaper
 		 targetSize: {
 			 if (typeof plasmoid !== "undefined") {
