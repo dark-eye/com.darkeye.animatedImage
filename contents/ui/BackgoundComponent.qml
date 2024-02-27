@@ -63,7 +63,7 @@ Item {
         property variant dayNightTex : Image {  source: "day_night_gradient.png" }
         property variant desaturateTex : Image { source: "desaturate_gradient.png" }
         property variant shadingTex : Image { source: "day_night_shading.png" }
-        property variant timePos :Qt.point(backgroundRoot.timeoffestForDayNight,1)
+        property variant timePos :Qt.point(backgroundRoot.timeoffsetForDayNight,1)
         fragmentShader: "varying highp vec2 qt_TexCoord0;
                         uniform float effectStrength;
                         uniform vec2 timePos;
