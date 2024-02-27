@@ -10,8 +10,6 @@ import org.kde.kcm 1.1 as KCM
 import org.kde.kirigami 2.4 as Kirigami
 import org.kde.newstuff 1.1 as NewStuff
 
-
-
  Column {
 	 id: root
 	 anchors.fill:parent
