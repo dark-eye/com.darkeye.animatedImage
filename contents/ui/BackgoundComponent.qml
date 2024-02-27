@@ -16,7 +16,7 @@ Item {
 	property real dayNightEffect: wallpaper.configuration.DayNightEffect
 	property int dayNightOffset: wallpaper.configuration.DayNightOffset
 	property bool cacheImageAnyway: wallpaper.configuration.CacheImageAnyway
-	property real timeoffestForDayNight : (Date.now()+(dayNightOffset*1000)+(new Date()).getTimezoneOffset())%86400000/86400000
+	property real timeoffsetForDayNight : ( Date.now() + (dayNightOffset*1000) + ((new Date()).getTimezoneOffset() * 60 * -1000)) % 86400000 / 86400000
 
 	anchors.fill:parent
 	Rectangle {

@@ -23,7 +23,7 @@ import org.kde.newstuff 1.1 as NewStuff
 	 property string cfg_Image: "animation.webp"
 	 property alias  cfg_DayNightColoring : dayNightColoringChkBox.checked
 	 property alias  cfg_DayNightEffect: dayNightColorEffectSld.value
-	 property alias  cfg_DayNightOffset: dayNightColoroffsetSld.value
+	 property alias  cfg_DayNightOffset: dayNightColorOffsetSld.value
 	 property alias  cfg_CacheImageAnyway: cacheImageAnywayChkBox.checked
 	 property alias  cfg_StopAnimOnHide: stopOnMaximaizeChkBox.checked
 
@@ -128,12 +128,15 @@ import org.kde.newstuff 1.1 as NewStuff
 				 to: 1
 			 }
 
+			 QtControls.Label {
+				 horizontalAlignment: Text.AlignRight
+				 text:  i18nd("plasma_applet_org.kde.image","Time offset");
+			 }
 			 QtControls.Slider {
-				 visible: !wallpaper
 				 enabled: dayNightColoringChkBox.checked
-				 id:dayNightColoroffsetSld
+				 id:dayNightColorOffsetSld
 				 live:true
-				 from: 1
+				 from: 0
 				 value: 43200
 				 to: 86400
 			 }
