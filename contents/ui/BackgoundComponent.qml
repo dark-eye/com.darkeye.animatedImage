@@ -16,7 +16,7 @@ Item {
 	property real dayNightEffect: wallpaper.configuration.DayNightEffect
 	property int dayNightOffset: wallpaper.configuration.DayNightOffset
 	property bool cacheImageAnyway: wallpaper.configuration.CacheImageAnyway
-	property real timeoffestForDayNight : (Date.now()+(dayNightOffset*1000)+(new Date()).getTimezoneOffset())%86400000/86400000
+	property real timeoffsetForDayNight : ( Date.now() + (dayNightOffset*1000) + ((new Date()).getTimezoneOffset() * 60 * -1000)) % 86400000 / 86400000
 
 	anchors.fill:parent
 	Rectangle {
@@ -27,7 +27,7 @@ Item {
 		AnimatedImage {
 			id: animation
 			anchors.fill:parent
-			
+
 			property var cachingLimit: 67108864
 
 			asynchronous:true
@@ -63,7 +63,7 @@ Item {
         property variant dayNightTex : Image {  source: "day_night_gradient.png" }
         property variant desaturateTex : Image { source: "desaturate_gradient.png" }
         property variant shadingTex : Image { source: "day_night_shading.png" }
-        property variant timePos :Qt.point(backgroundRoot.timeoffestForDayNight,1)
+        property variant timePos :Qt.point(backgroundRoot.timeoffsetForDayNight,1)
         fragmentShader: "varying highp vec2 qt_TexCoord0;
                         uniform float effectStrength;
                         uniform vec2 timePos;
@@ -80,7 +80,7 @@ Item {
                             lowp vec4 shadingEffect = texture2D(shadingTex, timePos);
                             float satur = dot(tex.rgb, vec3(0.2126, 0.7152, 0.0722 ));
                             gl_FragColor = (mix( tex.rgba ,vec4(satur,satur,satur,1) , desturateEffect.r ) +
-                                        (( coloringEffect.rgba - vec4(0.75, 0.75, 0.75, 1) ) * effectStrength)) * 
+                                        (( coloringEffect.rgba - vec4(0.75, 0.75, 0.75, 1) ) * effectStrength)) *
                                         mix( vec4(1,1,1,1), shadingEffect.rgba, effectStrength ) *
                                         qt_Opacity;
                         }"
