@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.kitemmodels as KItemModels
 
 import org.kde.taskmanager 0.1 as TaskManager
 
@@ -33,10 +34,10 @@ Item {
 			activeWindowModel.sourceModel = tasksModel
 		}
 	}
-	PlasmaCore.SortFilterModel {
+	KItemModels.KSortFilterProxyModel {
 		id: activeWindowModel
-		filterRole: 'IsActive'
-		filterRegExp: 'true'
+		filterRole: 1
+		filterString: 'true'
 		onDataChanged: {
 			updateActiveWindowInfo()
 		}
@@ -47,7 +48,7 @@ Item {
 
 
 	function activeTask() {
-		return activeWindowModel.get(0) || {}
+		return activeWindowModel[0] || {}
 	}
 	
 	function isOnSpecificScreen(screenId) {
