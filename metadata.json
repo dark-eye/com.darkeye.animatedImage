@@ -1,0 +1,31 @@
+{
+    "KPlugin": {
+        "Icon": "preferences-desktop-wallpaper",
+        "Id": "com.darkeye.animatedImage",
+        "MimeTypes": [
+            "image/gif",
+            "image/png",
+            "image/svg+xml",
+            "image/svg+xml-compressed",
+            "video/x-mng"
+        ],
+        "Name": "Animated Image",
+        "Website": "https://github.com/dark-eye/com.darkeye.animatedImage",
+        "ServiceTypes": [
+            "Plasma/Wallpaper"
+        ]
+    },
+    "X-KDE-ParentApp": "org.kde.plasmashell",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "KPackageStructure": "Plasma/Wallpaper",
+    "Keywords": "",
+    "MimeType": "image/gif;image/png;image/svg+xml;image/svg+xml-compressed;video/x-mng;",
+    "X-Plasma-DropMimeTypes": [
+        "image/gif",
+        "image/png",
+        "image/svg+xml",
+        "image/svg+xml-compressed",
+        "video/x-mng"
+    ],
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

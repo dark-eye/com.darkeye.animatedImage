@@ -2,11 +2,11 @@ import QtQuick 2.11
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 import QtQuick.Controls 2.4 as QtControls
-import QtQuick.Dialogs 1.1 as QtDialogs
+import QtQuick.Dialogs as QtDialogs
 import QtQuick.Window 2.0 // for Screen
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import org.kde.plasma.wallpapers.image 2.0 as Wallpaper
-import org.kde.kcm 1.1 as KCM
+import org.kde.kcmutils as KCM
 import org.kde.kirigami 2.4 as Kirigami
 import org.kde.newstuff 1.1 as NewStuff
 
@@ -17,7 +17,7 @@ import org.kde.newstuff 1.1 as NewStuff
 	 anchors.fill:parent
 	 property alias  cfg_Blur: blurCheckBox.checked
 	 property alias  cfg_BlurRadius: blurRadiusSld.value
-	 property alias  cfg_Color: colorDlg.color
+	 // property alias  cfg_Color: colorDlg.color
 	 property alias  cfg_Speed: animatedImageSpeedSld.value
 	 property int    cfg_FillMode: Image.PreserveAspectFit
 	 property string cfg_Image: "animation.webp"
@@ -53,7 +53,7 @@ import org.kde.newstuff 1.1 as NewStuff
 				 QtDialogs.ColorDialog {
 					 id:colorDlg
 					 modality: Qt.WindowModal
-					 showAlphaChannel: false
+					 // showAlphaChannel: false
 					 title: i18nd("plasma_applet_org.kde.image", "Select Background Color")
 
 				 }
@@ -203,7 +203,7 @@ import org.kde.newstuff 1.1 as NewStuff
 			 Item {
 				 width: height*(Screen.width/Screen.height)
 				 height: configColumn.height
-				 BackgoundComponent {
+				 BackgroundComponent {
 					 _animation.playing:(_animation.status == AnimatedImage.Ready )
 					 source: root.cfg_Image
 					 blurEnabled: blurCheckBox.checked
@@ -290,7 +290,7 @@ import org.kde.newstuff 1.1 as NewStuff
             configFile: "wallpaper.knsrc"
             text: i18nd("plasma_wallpaper_org.kde.image", "Get New Wallpapers...")
             viewMode: NewStuff.Page.ViewMode.Preview
-            onChangedEntriesChanged: imageWallpaper.newStuffFinished();
+            // onChangedEntriesChanged: imageWallpaper.newStuffFinished();
         }
 	 }
 

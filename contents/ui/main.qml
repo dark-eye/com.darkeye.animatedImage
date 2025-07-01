@@ -1,10 +1,11 @@
 import QtQuick 2.11
 import org.kde.plasma.core 2.0 as PlasmaCore
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import QtQuick.Window 2.0 // for Screen
+import org.kde.plasma.plasmoid
 
 
-Item {
+WallpaperItem {
     id: root
 
     width: Screen.width
@@ -25,7 +26,7 @@ Item {
     }
     
     
-    BackgoundComponent {
+    BackgroundComponent {
         id:backgroundComponent
         _animation.playing: _animation.status == AnimatedImage.Ready && (!wallpaper.configuration.StopAnimOnHide || !windowModel.currentWindowMaximized) 
 //         source: wallpaper.configuration.Image

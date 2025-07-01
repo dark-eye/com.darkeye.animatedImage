@@ -18,11 +18,11 @@
  */
 
 import QtQuick 2.11
-import QtQuick.Controls.Private 1.0
-import QtGraphicalEffects 1.0
+import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 import org.kde.kquickcontrolsaddons 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.kcm 1.1 as KCM
+import org.kde.plasma.components 3.0 as PlasmaComponents
+import org.kde.kcmutils as KCM
 
 KCM.GridDelegate {
     id: wallpaperDelegate
